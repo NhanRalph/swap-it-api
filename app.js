@@ -1,23 +1,18 @@
-require('dotenv').config();
+const { app, server } = require("./socketIO/server");
+const cors = require("cors");
+require("dotenv").config();
 
-const express = require('express');
-const app = express();
+const express = require("express");
 
-const cors = require('cors');
-// const corsOptions = {
-//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//   allowedHeaders: ['Content-Type', 'Authorization'],
-//   optionsSuccessStatus: 204,
-// };
+// middlewares
+app.use(express.json());
+app.use(cors());
 
-// app.use(cors(corsOptions));
-app.use(cors);
-const itemRouter = require('./api/Items/Items.router');
+const itemRouter = require("./api/Items/Items.router");
 
 app.use(express.json());
-app.use('/api/items', itemRouter);
+app.use("/api/items", itemRouter);
 
-
-app.listen(3000, () => {
-  console.log('Server is running at PORT:', 3000);
+server.listen(3000, () => {
+  console.log("Server is running at PORT:", 3000);
 });
