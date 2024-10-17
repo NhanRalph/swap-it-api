@@ -2,6 +2,16 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
+
+const cors = require('cors');
+// const corsOptions = {
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+//   optionsSuccessStatus: 204,
+// };
+
+// app.use(cors(corsOptions));
+app.use(cors);
 const itemRouter = require('./api/Items/Items.router');
 
 app.use(express.json());

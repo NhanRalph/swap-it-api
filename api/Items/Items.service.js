@@ -31,7 +31,21 @@ module.exports = {
     },
     getAll: (callBack) => {
         pool.query(
-            `SELECT * FROM Items`,
+            `SELECT 
+                i.item_id,
+                i.seller_id,
+                i.item_name,
+                i.description,
+                i.price,
+                i.category,
+                i.quantity,
+                i.posted_date,
+                i.item_status,
+                u.name AS seller_name,
+                '' AS image,
+                'Binh Thanh' as address
+            FROM Items i
+            JOIN Users u ON i.seller_id = u.user_id`,
             [],
             (error, results, fields) => {
                 if (error) {
